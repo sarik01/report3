@@ -169,7 +169,7 @@ def account():
 
     print(user)
 
-    return jsonify(user.format())
+    return jsonify(user.format2())
 
 
 @users.route('/')

@@ -116,6 +116,49 @@ class User(db.Model, UserMixin):
             }
 
 
+    def format2(self):
+
+        count = 0
+        for x in self.report_user:
+            x
+
+            count += 1
+
+
+        counter = 0
+        for i in Report.query.filter_by(status='checked', user_id=self.id):
+            i
+            counter += 1
+
+        counter1 = 0
+        if Report.query.filter_by(status='sent', user_id=self.id):
+            for i in Report.query.filter_by(status='sent', user_id=self.id):
+                i
+                counter1 += 1
+
+        for i in Report.query.filter_by(status='status', user_id=self.id):
+            i
+            counter1 += 1
+
+        return {
+            'id': self.id,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'role': self.roles,
+            'region': self.region,
+            'section': self.section.section,
+            'tasks': count,
+            'done_tasks': counter,
+            'phone': self.phone,
+            'img': self.image,
+            'process': counter1,
+            'img_route': f'static/profile_pics/{self.email}/account_img/{self.image}',
+            'section_id': self.section_id
+
+            }
+
+
     @property
     def is_admin(self):
         return self.roles == 'admin'
